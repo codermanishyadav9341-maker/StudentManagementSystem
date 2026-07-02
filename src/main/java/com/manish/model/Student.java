@@ -153,6 +153,23 @@ public class Student {
     public String getStatus(){
         return status;
     }
+
+    @Override
+    public String toString(){
+        return "Student{" +
+                "Id:- " +id+ "\n"+
+                "Name:- " +name+ "\n"+
+                "Age:- " +age+ "\n"+
+                "Gender:- " +gender+ "\n"+
+                "Course:- " +course+ "\n"+
+                "Email:- " +email+ "\n"+
+                "Phone:- " +phone+ "\n"+
+                "Address:- " +address+ "\n"+
+                "DateOfBirth:- " +dateOfBirth+ "\n"+
+                "Admission Date:- " +admissionDate+ "\n"+
+                "Fee:- " +fee+ "\n"+
+                "Status:- " +status+ "\n";
+    }
 }
 
 
