@@ -45,7 +45,7 @@ public class Student {
             this.id = id;
         }
         else{
-            System.out.println("Invalid age");
+            throw new IllegalArgumentException("Invalid age");
         }
     }
 
@@ -58,7 +58,7 @@ public class Student {
             this.name = name;
         }
         else{
-            System.out.println("Invalid name");
+            throw new IllegalArgumentException("Invalid name");
         }
     }
 
@@ -79,12 +79,12 @@ public class Student {
 
     public void setGender(String gender) {
         if (gender != null &&
-                gender.equalsIgnoreCase("Male") ||
+                (gender.equalsIgnoreCase("Male") ||
                 gender.equalsIgnoreCase("Female") ||
-                gender.equalsIgnoreCase("Other")) {
+                gender.equalsIgnoreCase("Other"))) {
             this.gender = gender;
         } else {
-            System.out.println("Invalid gender");
+            throw new IllegalArgumentException("Invalid gender");
         }
     }
 
@@ -97,7 +97,7 @@ public class Student {
             this.course = course;
         }
         else{
-            System.out.println("Invalid course");
+            throw new IllegalArgumentException("Invalid course");
         }
     }
 
@@ -106,7 +106,7 @@ public class Student {
     }
 
     public void setEmail(String email){
-       if(email != null || !email.matches("[A-Z,0-9,a-z,@,$]")){
+       if(email == null || !email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")){
            throw new IllegalArgumentException("Invalid email");
        }
         this.email = email;
@@ -117,7 +117,7 @@ public class Student {
     }
 
     public void setPhone(String phone){
-       if((phone != null || !phone.matches("\\d{10}"))){
+       if((phone == null || !phone.matches("\\d{10}"))){
            throw new IllegalArgumentException("Phone number must be contain 10 digits");
        }
         this.phone = phone;
@@ -132,7 +132,7 @@ public class Student {
             this.address = address;
         }
          else{
-             System.out.println("Invalid address");
+             throw new IllegalArgumentException("Invalid address");
         }
     }
 
@@ -141,7 +141,7 @@ public class Student {
     }
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
-       if(dateOfBirth != null || dateOfBirth.isAfter(LocalDate.now())){
+       if(dateOfBirth == null || dateOfBirth.isAfter(LocalDate.now())){
            throw new IllegalArgumentException("Invalid  date of Birth");
        }
         this.dateOfBirth = dateOfBirth;
@@ -152,7 +152,7 @@ public class Student {
     }
 
     public void setAdmissionDate(LocalDate admissionDate){
-        if(admissionDate != null || admissionDate.isAfter(LocalDate.now())){
+        if(admissionDate == null || admissionDate.isAfter(LocalDate.now())){
             throw new IllegalArgumentException("Invalid AdmissionDate");
         }
         this.admissionDate = admissionDate;
@@ -174,8 +174,17 @@ public class Student {
     }
 
     public void setStatus(String status){
-        this.status = status;
+        if(status != null &&
+                (status.equalsIgnoreCase("Active") ||
+            status.equalsIgnoreCase("InActive"))) {
+
+
+            this.status = status;
+            return;
+        }
+         throw new IllegalArgumentException("Invalid status");
     }
+
 
     public String getStatus(){
         return status;
