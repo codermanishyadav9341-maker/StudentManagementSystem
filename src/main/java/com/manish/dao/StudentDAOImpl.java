@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import com.manish.util.DBConnection;
 
@@ -45,6 +46,7 @@ public class StudentDAOImpl implements StudentDAO {
 //--------------------------------View Student--------------------------------------------------------------
 
     public List<Student> getAllStudent(){
+        List<Student> students = new ArrayList<>();
         String str = "SELECT *FROM students";
 
         try(Connection con = DBConnection.getConnection()){
@@ -63,8 +65,19 @@ public class StudentDAOImpl implements StudentDAO {
                 student.setEmail(rs.getString("email"));
                 student.setPhone(rs.getString("phone"));
                 student.setAddress(rs.getString("address"));
-                student.setDateOfBirth(rs.getDate("dateOfBirth"));
+                student.setDateOfBirth(rs.getDate("dateOfBirth").toLocalDate());
+                student.setAdmissionDate(rs.getDate("admissionDate").toLocalDate());
+                student.setFee(rs.getDouble("fee"));
+                student.setStatus(rs.getString("status"));
+
+                students.add(student);
             }
+
         }
+        catch (SQLException e){
+            throw new IllegalArgumentException(e);
+        }
+        return students;
     }
+
 }
