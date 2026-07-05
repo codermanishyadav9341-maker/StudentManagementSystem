@@ -55,6 +55,15 @@ public class StudentDAOImpl implements StudentDAO {
             while(rs.next()){
                 Student student = new Student();
 
+                student.setId(rs.getInt("id"));
+                student.setName(rs.getString("name"));
+                student.setAge(rs.getInt("age"));
+                student.setGender(rs.getString("gender"));
+                student.setCourse(rs.getString("course"));
+                student.setEmail(rs.getString("email"));
+                student.setPhone(rs.getString("phone"));
+                student.setAddress(rs.getString("address"));
+                student.setDateOfBirth(rs.getDate("dateOfBirth"));
             }
         }
     }
