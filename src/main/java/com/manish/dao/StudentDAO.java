@@ -14,7 +14,7 @@ public interface StudentDAO {
     Student getStudentById(int id);
 
     //Search Student by name;
-    List<Student> getStudentsByName(String name);
+    Student getStudentByEmail(String email);
 
     //Update Student;
     boolean updateStudent(Student student);

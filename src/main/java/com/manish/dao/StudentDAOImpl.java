@@ -117,4 +117,35 @@ public class StudentDAOImpl implements StudentDAO {
 
     //----------------------------------------:Search by email:-------------------------------------------
 
+    public Student getStudentByEmail(String email){
+        String sql = "SELECT *FROM students WHERE email = ?";
+
+        try{
+            Connection con = DBConnection.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()){
+                Student student = new Student();
+
+                student.setId(rs.getInt("id"));
+                student.setName(rs.getString("name"));
+                student.setAge(rs.getInt("age"));
+                student.setEmail(rs.getString("email"));
+                student.setCourse(rs.getString("course"));
+                student.setPhone(rs.getString("phone"));
+                student.setGender(rs.getString("gender" ));
+                student.setDateOfBirth(rs.getDate("dateOdBirth").toLocalDate());
+                student.setAdmissionDate(rs.getDate("admissionDate").toLocalDate());
+                student.setFee(rs.getDouble("fee"));
+                student.setStatus(rs.getString("status"));
+
+                return student;
+            }
+        }
+        catch (SQLException e){
+            throw new IllegalArgumentException(e);
+        }
+       return null;
+    }
 }
