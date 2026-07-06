@@ -80,4 +80,41 @@ public class StudentDAOImpl implements StudentDAO {
         return students;
     }
 
+    //---------------------------------------:Search by id:---------------------------------------------;
+
+    public Student getStudentById(int id){
+        String sql = "SELECT *FROM students WHERE id = ?";
+
+        try{
+            Connection con = DBConnection.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()){
+                Student student = new Student();
+
+                student.setId(rs.getInt("id"));
+                student.setName(rs.getString("name"));
+                student.setAge(rs.getInt("age"));
+                student.setGender(rs.getString("gender"));
+                student.setEmail(rs.getString("email"));
+                student.setPhone(rs.getString("phone"));
+                student.setCourse(rs.getString("course"));
+                student.setAddress(rs.getString("address"));
+                student.setDateOfBirth(rs.getDate("dateOfBirth").toLocalDate());
+                student.setAdmissionDate(rs.getDate("admissionDate").toLocalDate());
+                student.setFee(rs.getDouble("fee"));
+                student.setStatus(rs.getString("status"));
+
+                return student;
+            }
+        }
+        catch(SQLException e){
+            throw new IllegalArgumentException(e);
+        }
+        return null;
+    }
+
+    //----------------------------------------:Search by email:-------------------------------------------
+
 }
