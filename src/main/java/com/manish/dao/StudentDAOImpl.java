@@ -199,7 +199,21 @@ public class StudentDAOImpl implements StudentDAO {
             ps.setString(1,student.getName());
             ps.setInt(2,student.getAge());
             ps.setString(3,student.getGender());
-            ps.setString(4,student)
+            ps.setString(4,student.getCourse());
+            ps.setString(5,student.getPhone());
+            ps.setString(6,student.getEmail());
+            ps.setString(7,student.getAddress());
+            ps.setDate(8,java.sql.Date.valueOf(student.getDateOfBirth()));
+            ps.setDate(9,java.sql.Date.valueOf(student.getDateOfBirth()));
+            ps.setDouble(10,student.getFee());
+            ps.setString(11,student.getStatus());
+            ps.setInt(12,student.getId());
+
+            return ps.executeUpdate()  > 0;
+        }
+        catch(SQLException e){
+            throw new IllegalArgumentException(e);
         }
     }
+
 }
