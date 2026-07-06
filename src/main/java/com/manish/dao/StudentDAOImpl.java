@@ -185,4 +185,21 @@ public class StudentDAOImpl implements StudentDAO {
         }
         return student;
     }
+
+    //--------------------------------Update Student:------------------------------------------------;
+    public boolean updateStudent(Student student){
+        String sql = "UPDATE students SET "
+                + "name = ?,age = ? , gender = ?,course = ? , phone = ? email = ?"+
+                 "address = ? ,dateOfBirth = ?, admissionDate = ? ,fee = ? ,status = ?"+ "WHERE id = ?";
+
+        try{
+            Connection con = DBConnection.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setString(1,student.getName());
+            ps.setInt(2,student.getAge());
+            ps.setString(3,student.getGender());
+            ps.setString(4,student)
+        }
+    }
 }
