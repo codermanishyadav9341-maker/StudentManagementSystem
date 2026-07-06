@@ -13,8 +13,11 @@ public interface StudentDAO {
     // Student search by id;
     Student getStudentById(int id);
 
-    //Search Student by name;
+    //Search Student by email;
     Student getStudentByEmail(String email);
+
+    // Search Student by name;
+    List<Student> getStudentByName(String name);
 
     //Update Student;
     boolean updateStudent(Student student);
