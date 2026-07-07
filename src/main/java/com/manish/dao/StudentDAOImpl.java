@@ -44,8 +44,8 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
 //--------------------------------View Student--------------------------------------------------------------
-
-    public List<Student> getAllStudent(){
+    @Override
+    public List<Student> getAllStudents(){
         List<Student> students = new ArrayList<>();
         String str = "SELECT *FROM students";
 
@@ -82,6 +82,7 @@ public class StudentDAOImpl implements StudentDAO {
 
     //---------------------------------------:Search by id:---------------------------------------------;
 
+    @Override
     public Student getStudentById(int id){
         String sql = "SELECT *FROM students WHERE id = ?";
 
@@ -116,7 +117,7 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     //----------------------------------------:Search by email:-------------------------------------------
-
+@Override
     public Student getStudentByEmail(String email){
         String sql = "SELECT *FROM students WHERE email = ?";
 
@@ -151,6 +152,7 @@ public class StudentDAOImpl implements StudentDAO {
 
     //-------------------------------------:Search student by name:-------------------------------------;
 
+    @Override
     public List<Student> getStudentsByName(String name){
         List<Student> student = new ArrayList<>();
 
@@ -187,6 +189,7 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     //--------------------------------Update Student:------------------------------------------------;
+    @Override
     public boolean updateStudent(Student student){
         String sql = "UPDATE students SET "
                 + "name = ?,age = ? , gender = ?,course = ? , phone = ? email = ?"+
@@ -216,6 +219,7 @@ public class StudentDAOImpl implements StudentDAO {
         }
     }
 //---------------------------------------:Delete student from id:----------------------------------------;
+    @Override
     public boolean deleteStudent(int id){
         String str = "DELETE FROM students WHERE id = ?";
 
@@ -231,5 +235,26 @@ public class StudentDAOImpl implements StudentDAO {
             throw new IllegalArgumentException(e);
          }
 
+    }
+
+    //---------------------------------------:Exists by id:------------------------------------------;
+    @Override
+    public boolean existsStudent(int id){
+        String str = "SELECT id FROM students WHERE id = ?";
+
+        try{
+            Connection con = DBConnection.getConnection();
+            PreparedStatement ps = con.prepareStatement(str);
+
+            ps.setInt(1,id);
+
+            ResultSet rs = ps.executeQuery();
+
+            rs.next();
+        }
+        catch(SQLException e){
+            throw new IllegalArgumentException(e);
+        }
+        return false;
     }
 }
