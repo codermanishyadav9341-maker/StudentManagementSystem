@@ -87,6 +87,7 @@ public class StudentDAOImpl implements StudentDAO {
         try{
             Connection con = DBConnection.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1,id);
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()){
@@ -122,6 +123,7 @@ public class StudentDAOImpl implements StudentDAO {
         try{
             Connection con = DBConnection.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1,email);
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()){
@@ -134,7 +136,7 @@ public class StudentDAOImpl implements StudentDAO {
                 student.setCourse(rs.getString("course"));
                 student.setPhone(rs.getString("phone"));
                 student.setGender(rs.getString("gender" ));
-                student.setDateOfBirth(rs.getDate("dateOdBirth").toLocalDate());
+                student.setDateOfBirth(rs.getDate("dateOfBirth").toLocalDate());
                 student.setAdmissionDate(rs.getDate("admissionDate").toLocalDate());
                 student.setFee(rs.getDouble("fee"));
                 student.setStatus(rs.getString("status"));
@@ -154,11 +156,12 @@ public class StudentDAOImpl implements StudentDAO {
     public List<Student> getStudentsByName(String name){
         List<Student> student = new ArrayList<>();
 
-        String str = "SELECT *FROM students WHERE name LIKE ?";
+        String str = "SELECT *FROM students WHERE name  = ?";
 
         try{
             Connection con = DBConnection.getConnection();
             PreparedStatement ps = con.prepareStatement(str);
+            ps.setString(1,name);
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()){
@@ -190,8 +193,10 @@ public class StudentDAOImpl implements StudentDAO {
     @Override
     public boolean updateStudent(Student student){
         String sql = "UPDATE students SET "
-                + "name = ?,age = ? , gender = ?,course = ? , phone = ? email = ?"+
-                 "address = ? ,dateOfBirth = ?, admissionDate = ? ,fee = ? ,status = ?"+ "WHERE id = ?";
+                + "name = ?,age = ? , gender = ?,course = ? , phone = ? ,email =  ?,address = ? "
+                + "dateOfBirth = ?, admissionDate = ? ,fee = ? ,status = ?" +
+                " WHERE id = ?";
+
 
         try{
             Connection con = DBConnection.getConnection();
@@ -205,7 +210,7 @@ public class StudentDAOImpl implements StudentDAO {
             ps.setString(6,student.getEmail());
             ps.setString(7,student.getAddress());
             ps.setDate(8,java.sql.Date.valueOf(student.getDateOfBirth()));
-            ps.setDate(9,java.sql.Date.valueOf(student.getDateOfBirth()));
+            ps.setDate(9,java.sql.Date.valueOf(student.getAdmissionDate()));
             ps.setDouble(10,student.getFee());
             ps.setString(11,student.getStatus());
             ps.setInt(12,student.getId());
@@ -213,8 +218,9 @@ public class StudentDAOImpl implements StudentDAO {
             return ps.executeUpdate()  > 0;
         }
         catch(SQLException e){
-            throw new IllegalArgumentException(e);
+            e.printStackTrace();
         }
+        return false;
     }
 //---------------------------------------:Delete student from id:----------------------------------------;
     @Override
@@ -230,9 +236,9 @@ public class StudentDAOImpl implements StudentDAO {
             return ps.executeUpdate() > 0;
         }
          catch(SQLException e){
-            throw new IllegalArgumentException(e);
+            e.printStackTrace();
          }
-
+return false;
     }
 
     //---------------------------------------:Exists by id:------------------------------------------;
@@ -248,11 +254,12 @@ public class StudentDAOImpl implements StudentDAO {
 
             ResultSet rs = ps.executeQuery();
 
-            rs.next();
+            return rs.next();
         }
         catch(SQLException e){
-            throw new IllegalArgumentException(e);
+            e.printStackTrace();
         }
-        return false;
+return  false;
     }
+
 }
