@@ -10,14 +10,12 @@ import java.util.List;
 import com.manish.util.DBConnection;
 
 public class StudentDAOImpl implements StudentDAO {
-
     //------------------------------------Add Student:---------------------------------------------------------
     @Override
     public boolean addStudent(Student student) {
-        String str = "INSERT INTO students"
-                + "id,name,age,gender,course,email,phone,address"
-                + "date_of_birth,admission_date,fee,status"
-                + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+        String str = "INSERT INTO students" +
+                "(id,name,age,gender,course,email,phone,address,dateOfBirth,admissionDate,fee,status)" +
+                " VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try (Connection con = DBConnection.getConnection()) {
             PreparedStatement ps = con.prepareStatement(str);
