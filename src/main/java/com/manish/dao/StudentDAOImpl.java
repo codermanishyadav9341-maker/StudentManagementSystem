@@ -215,5 +215,21 @@ public class StudentDAOImpl implements StudentDAO {
             throw new IllegalArgumentException(e);
         }
     }
+//---------------------------------------:Delete student from id:----------------------------------------;
+    public boolean deleteStudent(int id){
+        String str = "DELETE FROM students WHERE id = ?";
 
+        try{
+            Connection con = DBConnection.getConnection();
+            PreparedStatement ps = con.prepareStatement(str);
+
+            ps.setInt(1,id);
+
+            return ps.executeUpdate() > 0;
+        }
+         catch(SQLException e){
+            throw new IllegalArgumentException(e);
+         }
+
+    }
 }
