@@ -17,7 +17,7 @@ public interface StudentService {
     Student studentByEmail(String email);
 
     //Search by name;
-    List<Student> getStudentByName(Student student);
+    List<Student> getStudentByName(String name);
 
     //update student;
     boolean updateStudent(Student student);

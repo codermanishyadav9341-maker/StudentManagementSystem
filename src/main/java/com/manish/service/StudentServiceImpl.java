@@ -32,4 +32,34 @@ public class StudentServiceImpl implements StudentService {
     public Student studentById(int id){
         return studentDAO.getStudentById(id);
     }
+
+//----------------------------------:Search by name:---------------------------------------------------------
+    @Override
+    public List<Student> getStudentByName(String name){
+        return studentDAO.getStudentsByName(name);
+    }
+
+//-----------------------------------------:Search by email:------------------------------------------------
+    @Override
+    public Student studentByEmail(String email){
+        return studentDAO.getStudentByEmail(email);
+    }
+
+//-----------------------------------------:Update Student:-------------------------------------------------
+
+    public boolean updateStudent(Student student){
+        return studentDAO.updateStudent(student);
+    }
+
+//------------------------------------------:Delete student:-----------------------------------------------
+
+    public boolean deleteStudent(int id){
+        return studentDAO.deleteStudent(id);
+    }
+
+//-------------------------------------------Exists student:-----------------------------------------------
+    @Override
+    public boolean existsStudent(int id){
+        return studentDAO.existsStudent(id);
+    }
 }
