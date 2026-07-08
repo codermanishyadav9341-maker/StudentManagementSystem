@@ -13,6 +13,9 @@ public interface StudentService {
     //Search by id;
     Student studentById(int id);
 
+    //Search by email
+    Student studentByEmail(String email);
+
     //Search by name;
     List<Student> getStudentByName(Student student);
 
