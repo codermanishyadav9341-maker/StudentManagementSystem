@@ -169,6 +169,7 @@ public class Student {
         this.fee = fee;
     }
 
+
     public double getFee(){
         return fee;
     }
@@ -205,8 +206,10 @@ public class Student {
                 "Admission Date:- " +admissionDate+ "\n"+
                 "Fee:- " +fee+ "\n"+
                 "Status:- " +status+ "\n";
-    }
 
+
+
+    }
 
 }
 
