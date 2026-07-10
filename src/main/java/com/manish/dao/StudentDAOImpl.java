@@ -90,7 +90,7 @@ public class StudentDAOImpl implements StudentDAO {
             ps.setInt(1,id);
             ResultSet rs = ps.executeQuery();
 
-            while(rs.next()){
+            if(rs.next()){
                 Student student = new Student();
 
                 student.setId(rs.getInt("id"));
