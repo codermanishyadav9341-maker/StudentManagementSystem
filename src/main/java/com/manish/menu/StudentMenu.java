@@ -2,8 +2,9 @@ package com.manish.menu;
 
 import com.manish.service.StudentService;
 import com.manish.service.StudentServiceImpl;
+import com.manish.model.Student;
 
-
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class StudentMenu {
@@ -77,5 +78,56 @@ public class StudentMenu {
     }
 
     // -----------------------------------------------:add student:-----------------------------------------------
+
+          private void addStudent(){
+        Student student = new Student();
+
+        System.out.print("ID:- ");
+        student.setId(scan.nextInt());
+        scan.nextLine();
+
+        System.out.print("Name:- ");
+        student.setName(scan.nextLine());
+
+        System.out.print("Age:- ");
+        student.setAge(scan.nextInt());
+        scan.nextLine();
+
+        System.out.print("Gender:- ");
+        student.setGender(scan.nextLine());
+
+        System.out.print("Course:- ");
+        student.setCourse(scan.nextLine());
+
+        System.out.print("Email:- ");
+        student.setEmail(scan.nextLine());
+
+        System.out.print("Phone:- ");
+        student.setPhone(scan.nextLine());
+
+        System.out.print("Address:- ");
+        student.setAddress(scan.nextLine());
+
+        System.out.print("Date Of Birth(yyyy-mm-dd):- ");
+        student.setDateOfBirth(LocalDate.parse(scan.nextLine()));
+
+        System.out.print("Admission(yyyy-mm-dd):- ");
+        student.setAdmissionDate(LocalDate.parse(scan.nextLine()));
+
+        System.out.print("Fee:- ");
+        student.setFee(scan.nextDouble());
+        scan.nextLine();
+
+        System.out.print("Status:- ");
+        student.setStatus(scan.nextLine());
+
+        if(service.addStudent(student)){
+            System.out.println("Student Added Successfully");
+        }
+         else{
+             System.out.println("Filed added student");
+        }
+    }
+  //-----------------------------------------:View Student:-----------------------------------------------------
 
 }
