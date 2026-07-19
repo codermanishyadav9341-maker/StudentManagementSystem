@@ -3,7 +3,8 @@ package com.manish.menu;
 import com.manish.service.StudentService;
 import com.manish.service.StudentServiceImpl;
 import com.manish.model.Student;
-
+import java.util.List;
+import java.util.ArrayList;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -129,5 +130,138 @@ public class StudentMenu {
         }
     }
   //-----------------------------------------:View Student:-----------------------------------------------------
+         private void viewAllStudents(){
+        List<Student> list = new ArrayList<>();
 
+        // Check if list is empty
+            if(list.isEmpty()){
+                System.out.println("No record found");
+                return;
+            }
+
+            //Print every student;
+            list.forEach(System.out::println);
+         }
+
+
+  //------------------------------------------:Search student by id:-------------------------------------------------
+      private void searchById(){   // method Search by id;
+
+        System.out.print("Enter ID:- ");
+        int id = scan.nextInt();
+
+        //Search student;
+          Student student = service.getStudentById(id);
+
+
+          if(student != null){
+              System.out.println(student);
+          }
+           else{
+               System.out.println("Student not found");
+          }
+      }
+
+//-------------------------------------------------:Search by name:-------------------------------------------------
+    private void searchByName(){
+
+        System.out.print("Enter Name:- ");
+        String name = scan.nextLine();
+
+        //Search by name;
+       List<Student> list = service.getStudentByName(name);
+
+       if(list == null){
+           System.out.println("No record found");
+           return;
+       }
+
+       list.forEach(System.out::println);
+    }
+//-----------------------------------------:Search by email:-------------------------------------------------------
+    private void searchByEmail(){
+
+        System.out.print("Enter Email:- ");
+        String email = scan.nextLine();
+
+        //Search student by email;
+        Student student = service.getStudentByEmail(email);
+
+        if(email != null){
+            System.out.println(student);
+        }
+         else{
+             System.out.println("No Record found");
+        }
+    }
+
+    //--------------------------------------------:Update Student:-------------------------------------------------
+    private void updateStudent(){
+
+        System.out.print("Enter Student ID:- ");
+        int id = scan.nextInt();
+        scan.nextLine();
+
+        Student student = service.getStudentById(id);
+        if(student == null){
+            System.out.println("Student not found");
+            return;
+        }
+
+        student.setId(id);
+
+        System.out.print("Name:- ");
+        student.setName(scan.nextLine());
+
+        System.out.print("Age:- ");
+        student.setAge(scan.nextInt());
+
+        System.out.print("Gender:- ");
+        student.setGender(scan.nextLine());
+
+        System.out.print("Course:- ");
+        student.setCourse(scan.nextLine());
+
+        System.out.print("Email:- ");
+        student.setEmail(scan.nextLine());
+
+        System.out.print("Phone:- ");
+        student.setPhone(scan.nextLine());
+
+        System.out.print("Address:- ");
+        student.setAddress(scan.nextLine());
+
+        System.out.print("Date Of Birth(yyyy-mm-dd):- ");
+        student.setDateOfBirth(LocalDate.parse(scan.nextLine()));
+
+        System.out.print("Admission Date(yyyy-mm-dd):- ");
+        student.setAdmissionDate(LocalDate.parse(scan.nextLine()));
+
+        System.out.print("Fee:- ");
+        student.setFee(scan.nextDouble());
+
+        System.out.print("Status:- ");
+        student.setStatus(scan.nextLine());
+
+        if(service.updateStudent(student)){
+            System.out.println("Student update Successfully");
+        }
+         else{
+             System.out.println("filed to update student");
+        }
+    }
+
+    //-------------------------------:Delete student:-----------------------------------------------
+    private void deleteStudent(){
+
+        System.out.print("Enter ID:- ");
+        int id = scan.nextInt();
+
+        if(service.deleteStudent(id)){
+            System.out.println("Deleted student Successfully");
+        }
+         else{
+             System.out.println("Failed deleted student");
+        }
+    }
 }

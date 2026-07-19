@@ -175,15 +175,13 @@ public class Student {
     }
 
     public void setStatus(String status){
-        if(status != null &&
+        if(status == null &&
                 (status.equalsIgnoreCase("Active") ||
             status.equalsIgnoreCase("InActive"))) {
 
-
-            this.status = status;
-            return;
+            throw new IllegalArgumentException("Invalid status");
         }
-         throw new IllegalArgumentException("Invalid status");
+        this.status = status;
     }
 
 

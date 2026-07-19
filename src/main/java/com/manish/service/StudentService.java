@@ -11,10 +11,10 @@ public interface StudentService {
     List<Student> getAllStudent();
 
     //Search by id;
-    Student studentById(int id);
+    Student getStudentById(int id);
 
     //Search by email
-    Student studentByEmail(String email);
+    Student getStudentByEmail(String email);
 
     //Search by name;
     List<Student> getStudentByName(String name);

@@ -29,7 +29,7 @@ public class StudentServiceImpl implements StudentService {
 
 //--------------------------------------:Search by id:-------------------------------------------------------
     @Override
-    public Student studentById(int id){
+    public Student getStudentById(int id){
         return studentDAO.getStudentById(id);
     }
 
@@ -41,7 +41,7 @@ public class StudentServiceImpl implements StudentService {
 
 //-----------------------------------------:Search by email:------------------------------------------------
     @Override
-    public Student studentByEmail(String email){
+    public Student getStudentByEmail(String email){
         return studentDAO.getStudentByEmail(email);
     }
 
