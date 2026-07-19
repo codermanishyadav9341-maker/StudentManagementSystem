@@ -2,10 +2,7 @@ package com.manish.menu;
 
 import com.manish.service.StudentService;
 import com.manish.service.StudentServiceImpl;
-import com.manish.dao.StudentDAO;
-import com.manish.dao.StudentDAOImpl;
-import com.manish.service.StudentService;
-import com.manish.service.StudentServiceImpl;
+
 
 import java.util.Scanner;
 
@@ -46,27 +43,27 @@ public class StudentMenu {
                     break;
 
                 case 2:
-                    viewAllStudents();
+                    viewAllStudents();  // View all student;
                     break;
 
                 case 3:
-                    searchById();
+                    searchById();  // student search by id;
                     break;
 
                 case 4:
-                    searchByName();
+                    searchByName();   // student search by name;
                     break;
 
                 case 5:
-                    searchByEmail();
+                    searchByEmail();    // student search  by email;
                     break;
 
                 case 6:
-                    updateStudent();
+                    updateStudent();     // update student;
                     break;
 
                 case 7:
-                    deleteStudent();
+                    deleteStudent();   // student delete;
                     break;
 
                 case 8:
@@ -78,4 +75,7 @@ public class StudentMenu {
             }
         }
     }
+
+    // -----------------------------------------------:add student:-----------------------------------------------
+
 }
