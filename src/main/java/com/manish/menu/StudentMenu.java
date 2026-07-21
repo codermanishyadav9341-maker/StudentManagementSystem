@@ -131,10 +131,10 @@ public class StudentMenu {
     }
   //-----------------------------------------:View Student:-----------------------------------------------------
          private void viewAllStudents(){
-        List<Student> list = new ArrayList<>();
+        List<Student> list = service.getAllStudent();
 
         // Check if list is empty
-            if(list.isEmpty()){
+            if(list == null){
                 System.out.println("No record found");
                 return;
             }

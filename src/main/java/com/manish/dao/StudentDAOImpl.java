@@ -108,6 +108,7 @@ public class StudentDAOImpl implements StudentDAO {
 
                 return student;
             }
+
         }
         catch(SQLException e){
             throw new IllegalArgumentException(e);
